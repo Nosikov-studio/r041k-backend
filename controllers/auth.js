@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require ('jsonwebtoken')
 const User = require('../models/User')
 const keys = require ('../config/keys')
-const errorHandler = require ('../utils/errorHandler')
+const errorHandler = require ('../utils/error-handler')
 
 
 module.exports.login = async function(req, res) {
