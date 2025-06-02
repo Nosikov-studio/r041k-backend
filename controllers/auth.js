@@ -24,7 +24,7 @@ module.exports.login = async function(req, res) {
         }
 
     } else {
-        res.status(404).JSON({  message: "не найден"})
+        res.status(404).json({  message: "не найден"})
     }
 }
 
