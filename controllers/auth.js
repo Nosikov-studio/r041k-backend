@@ -11,12 +11,13 @@ module.exports.login = function(req, res) {
     })
 }
 
-module.exports.register = function(req, res) {
+module.exports.register = async function(req, res) {
 
-    const user = new User ({
-        email: req.body.email,
-        password: req.body.password
-    })
-    user.save().then(()=> { res.json({message: "User created!!!"}); console.log("User created")}
-        )
+    const candidate = await User.findOne({email: req.body.email})
+
+    if (candidate) {
+        res.status(409).json({ message: "Такой уже есть!!!"})
+    } else {
+
+    }
 }
