@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs')
 const User = require('../models/User')
 
 
@@ -18,9 +19,11 @@ module.exports.register = async function(req, res) {
     if (candidate) {
         res.status(409).json({ message: "Такой уже есть!!!"})
     } else {
+        const salt = bcrypt.genSaltSync(10)
+        const password = req.body.password
         const user = new User({
             email: req.body.email,
-            password: req.body.password
+            password: bcrypt.hashSync(password, salt)
         })
 
         try {
