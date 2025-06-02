@@ -18,6 +18,17 @@ module.exports.register = async function(req, res) {
     if (candidate) {
         res.status(409).json({ message: "Такой уже есть!!!"})
     } else {
+        const user = new User({
+            email: req.body.email,
+            password: req.body.password
+        })
+
+        try {
+            await user.save()
+            res.status(201).json(user)
+        } catch(e) {
+            // Обработать ошибку
+        }
 
     }
 }
