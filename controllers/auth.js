@@ -17,5 +17,6 @@ module.exports.register = function(req, res) {
         email: req.body.email,
         password: req.body.password
     })
-    user.save().then(()=> console.log("User created"))
+    user.save().then(()=> { res.json({message: "User created!!!"}); console.log("User created")}
+        )
 }
