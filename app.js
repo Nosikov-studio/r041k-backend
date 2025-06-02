@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require('mongoose')
+const passport = require('passport')
 const cors = require('cors')
 // const morgan = require('morgan') // *зависимость устанавливается при начальной установке сервера
 const authRoutes = require('./routes/auth')
@@ -26,7 +27,8 @@ mongoose.connect(keys.mongoURI)
     .then(()=>console.log("Подключение установлено"))
     .catch(error => console.log(error));
    
-    
+app.use(passport.initialize())
+require('./middleware/passport')(passport)   
 
 app.use('/api/auth', authRoutes)
 app.use('/api/analytics', analyticsRoutes)
