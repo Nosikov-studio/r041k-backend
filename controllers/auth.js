@@ -12,11 +12,11 @@ module.exports.login = async function(req, res) {
 
         const passwordResult = bcrypt.compareSync(req.body.password, candidate.password)
         if (passwordResult){
-        
+// генерация токена, пароли совпали        
             const token = jwt.sign({
                 email: candidate.email,
                 userId: candidate._id
-            }, keys.jwt, {expiresIn: 60*60})
+            }, keys.jwt, {expiresIn: 60*60}) // второй параметр keys.jwt - секретный ключ
 
             res.status(200).json({token: `Bearer ${token}`})
 

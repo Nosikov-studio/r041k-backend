@@ -5,8 +5,8 @@ const User = mongoose.model('users')
 const keys = require('../config/keys')
 
 const options = {
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: keys.jwt
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), // берем токен из хэдеров
+    secretOrKey: keys.jwt // наш секретный ключ для проверки подлинности токена
 }
 
 module.exports = passport => {
