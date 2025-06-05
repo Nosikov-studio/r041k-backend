@@ -16,7 +16,7 @@ const app = express();
 // (например, JSON или URL-кодированных данных) не нужно устанавливать и использовать 
 // отдельный модуль body-parser — вместо этого можно использовать встроенные 
 // методы Express: express.json() и express.urlencoded()
-
+ app.use('/uploads', express.static('uploads'))
  app.use(express.json());
  app.use(express.urlencoded({ extended: true }));
 
