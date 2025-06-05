@@ -5,7 +5,7 @@ const categorySchema = new Schema ({
         type: String,
         required: true,        
     },
-    inageSrc:{
+    imageSrc:{
         type: String,
         default: ''
     },
