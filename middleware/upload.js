@@ -31,5 +31,5 @@ if (types.includes(file.mimetype)) {
 module.exports = multer({
     storage: storage,
     fileFilter: fileFilter,
-    limits: limits
+    // limits: limits
 })
