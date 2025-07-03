@@ -25,14 +25,29 @@ module.exports.getById = async function(req, res) {
 }
 
 
+// module.exports.remove = async function(req, res) {
+//         try {
+//     await Category.remove({_id: req.params.id})
+//     res.status(200).json({message: 'Категория удалена'})
+//     } catch (e) {
+//         errorHandler(res, e)
+//     }
+// }
+
 module.exports.remove = async function(req, res) {
-        try {
-    await Category.remove({_id: req.params.id})
-    res.status(200).json({message: 'Категория удалена'})
-    } catch (e) {
-        errorHandler(res, e)
+  try {
+    const category = await Category.findByIdAndDelete(req.params.id);
+    if (!category) {
+      return res.status(404).json({message: 'Категория не найдена'});
     }
+    res.status(200).json({message: 'Категория удалена'});
+  } catch (e) {
+    errorHandler(res, e);
+  }
 }
+
+
+
 
 module.exports.create = async function(req, res) {
     const category = new Category ({
